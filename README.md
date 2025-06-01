@@ -1,1 +1,0 @@
-# komkavshiri_local_data_lister
