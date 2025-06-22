@@ -1,0 +1,54 @@
+[
+  {
+    "id": "8a131131-878e-43d2-9f4c-3b99b1dbdb54",
+    "name": "Qutaia Sea Beach",
+    "type": "beach",
+    "description": "The best place for summer time.",
+    "location": "Next to the Qutaia Sea",
+    "rating": 5,
+    "tags": [],
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvTPv82XfI-FT12YQVKPIjJ05u3nMPDRoaSA&s",
+    "isTrending": true,
+    "openingHours": {
+      "open": "00:00",
+      "close": "00:00"
+    },
+    "featuredReview": {
+      "author": "Beqa Kikutadze",
+      "comment": "Amazing atmosphere",
+      "stars": 5
+    },
+    "accessibility": [],
+    "mysteryScore": 100,
+    "coordinates": {
+      "lat": 42.26221320052093,
+      "lng": 42.610843738886246
+    }
+  },
+  {
+    "id": "af1fdeaf-6d63-44ed-9572-b906663cd328",
+    "name": "Boat Race on River Riosi",
+    "type": "event",
+    "description": "Boat Race on River Riosi",
+    "location": "River Riosi",
+    "rating": 3,
+    "tags": [],
+    "imageUrl": "https://www.cambridge.org/elt/blog/wp-content/uploads/2023/03/Untitled-design-4.jpg",
+    "isTrending": true,
+    "openingHours": {
+      "open": "15:00",
+      "close": "17:00"
+    },
+    "featuredReview": {
+      "author": "Papuna",
+      "comment": "Amazing Experience",
+      "stars": 4
+    },
+    "accessibility": [],
+    "mysteryScore": 80,
+    "coordinates": {
+      "lat": 42.24334363810828,
+      "lng": 42.70079009794803
+    }
+  }
+]
