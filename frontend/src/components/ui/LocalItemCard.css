@@ -1,0 +1,13 @@
+.localitem-card {
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.localitem-card:hover {
+  background: #f2f2f2;
+}
