@@ -50,5 +50,241 @@
       "lat": 42.24334363810828,
       "lng": 42.70079009794803
     }
+  },
+  {
+    "id": "dde81625-cc31-4537-97f8-25bb25178162",
+    "name": "Qutaia Center",
+    "type": "urban_legend",
+    "description": "Qutaia Center",
+    "location": "Qutaia Center",
+    "rating": 5,
+    "tags": [
+      "Center"
+    ],
+    "imageUrl": "https://images.squarespace-cdn.com/content/v1/608164c98d4fc466c981a18c/9c85d364-46ee-4eb3-8f0d-b400bcd0560b/Floating-Fantasy-City.jpg",
+    "isTrending": false,
+    "openingHours": {
+      "open": "00:00",
+      "close": "00:00"
+    },
+    "featuredReview": {
+      "author": "Elene",
+      "comment": "Magical",
+      "stars": 5
+    },
+    "accessibility": [],
+    "mysteryScore": 100,
+    "coordinates": {
+      "lat": 42.27150220471065,
+      "lng": 42.70550440091875
+    }
+  },
+  {
+    "id": "3f0aebc1-d9f6-4683-b563-d5af1cec4b5f",
+    "name": "QIU",
+    "type": "abandoned_place",
+    "description": "Qutaia International University",
+    "location": "Qutaia International University",
+    "rating": 1,
+    "tags": [],
+    "imageUrl": "https://i.postimg.cc/c1zQKLbq/image.png",
+    "isTrending": false,
+    "openingHours": {
+      "open": "09:00",
+      "close": "17:00"
+    },
+    "featuredReview": {
+      "author": "Goga",
+      "comment": "It was an amazing place ... until it wasn't",
+      "stars": 0
+    },
+    "accessibility": [],
+    "mysteryScore": 10,
+    "coordinates": {
+      "lat": 42.20401691386244,
+      "lng": 42.71399223675272
+    }
+  },
+  {
+    "id": "0f248987-849a-4e16-9168-885b1e8c194b",
+    "name": "Sunken Library of Qutaia",
+    "type": "urban_legend",
+    "description": "An enigmatic location shrouded in myth and mystery.",
+    "location": "West Qutaia Heights",
+    "rating": 1,
+    "tags": [],
+    "imageUrl": "https://cdn.pixabay.com/photo/2020/06/20/17/44/castle-5323500_1280.jpg",
+    "isTrending": true,
+    "openingHours": {
+      "open": "08:00",
+      "close": "22:00"
+    },
+    "featuredReview": {
+      "author": "Nino",
+      "comment": "Beautifully bizarre",
+      "stars": 3
+    },
+    "accessibility": [],
+    "mysteryScore": 62,
+    "coordinates": {
+      "lat": 42.2219233205,
+      "lng": 42.6931052288
+    }
+  },
+  {
+    "id": "dfa1491e-7603-4d1b-bc9a-c30e16535bf3",
+    "name": "The Whispering Forest",
+    "type": "event",
+    "description": "An annual celebration of ancient tunes and forgotten traditions.",
+    "location": "North Whispering Zone",
+    "rating": 4,
+    "tags": [],
+    "imageUrl": "https://cdn.pixabay.com/photo/2021/09/14/21/11/fantasy-6625665_1280.jpg",
+    "isTrending": false,
+    "openingHours": {
+      "open": "08:00",
+      "close": "22:00"
+    },
+    "featuredReview": {
+      "author": "Beqa",
+      "comment": "Spine-chilling",
+      "stars": 2
+    },
+    "accessibility": [],
+    "mysteryScore": 55,
+    "coordinates": {
+      "lat": 42.2141202886,
+      "lng": 42.7004546891
+    }
+  },
+  {
+    "id": "27700455-8c57-40a4-8476-2534a5de26e3",
+    "name": "Skyview Tower",
+    "type": "park",
+    "description": "Once a thriving place, now home to silence and echoes.",
+    "location": "Sky District",
+    "rating": 4,
+    "tags": [],
+    "imageUrl": "https://cdn.pixabay.com/photo/2015/03/26/10/09/ruin-690206_1280.jpg",
+    "isTrending": true,
+    "openingHours": {
+      "open": "08:00",
+      "close": "22:00"
+    },
+    "featuredReview": {
+      "author": "Beqa",
+      "comment": "A hidden gem",
+      "stars": 4
+    },
+    "accessibility": [],
+    "mysteryScore": 82,
+    "coordinates": {
+      "lat": 42.2387787454,
+      "lng": 42.6792309184
+    }
+  },
+  {
+    "id": "7a768f18-9873-482b-823e-8464c9ea3c6f",
+    "name": "Frozen Fountain Plaza",
+    "type": "historic_site",
+    "description": "An oasis of color and calm amid the stone city.",
+    "location": "Riverbend",
+    "rating": 4,
+    "tags": [],
+    "imageUrl": "https://cdn.pixabay.com/photo/2020/06/27/21/38/fantasy-5346712_1280.jpg",
+    "isTrending": true,
+    "openingHours": {
+      "open": "08:00",
+      "close": "22:00"
+    },
+    "featuredReview": {
+      "author": "Elene",
+      "comment": "Echoes of the past",
+      "stars": 2
+    },
+    "accessibility": [],
+    "mysteryScore": 42,
+    "coordinates": {
+      "lat": 42.2656965703,
+      "lng": 42.6137075874
+    }
+  },
+  {
+    "id": "8cf12b54-446d-48bd-986e-1a7e1453b066",
+    "name": "Lost Pathway Maze",
+    "type": "abandoned_place",
+    "description": "Said to shift its layout each full moon.",
+    "location": "Murmur City",
+    "rating": 5,
+    "tags": [],
+    "imageUrl": "https://cdn.pixabay.com/photo/2020/08/25/20/41/garden-5518647_1280.jpg",
+    "isTrending": false,
+    "openingHours": {
+      "open": "08:00",
+      "close": "22:00"
+    },
+    "featuredReview": {
+      "author": "Papuna",
+      "comment": "A hidden gem",
+      "stars": 1
+    },
+    "accessibility": [],
+    "mysteryScore": 77,
+    "coordinates": {
+      "lat": 42.2330080344,
+      "lng": 42.6981795975
+    }
+  },
+  {
+    "id": "92155e48-6699-4414-82cc-73f1375e7114",
+    "name": "Crimson Market",
+    "type": "market",
+    "description": "A maze that many enter, but few master.",
+    "location": "Oldtown",
+    "rating": 4,
+    "tags": [],
+    "imageUrl": "https://cdn.pixabay.com/photo/2020/08/25/20/43/gate-5518651_1280.jpg",
+    "isTrending": true,
+    "openingHours": {
+      "open": "08:00",
+      "close": "22:00"
+    },
+    "featuredReview": {
+      "author": "Elene",
+      "comment": "Beautifully bizarre",
+      "stars": 1
+    },
+    "accessibility": [],
+    "mysteryScore": 49,
+    "coordinates": {
+      "lat": 42.2284146538,
+      "lng": 42.6690913077
+    }
+  },
+  {
+    "id": "360342a3-ab92-4b1d-9c6c-643bf7133187",
+    "name": "Glimmering Garden",
+    "type": "garden",
+    "description": "A monument to what once was.",
+    "location": "The Eastern Glade",
+    "rating": 1,
+    "tags": [],
+    "imageUrl": "https://cdn.pixabay.com/photo/2020/03/08/21/03/forest-4912635_1280.jpg",
+    "isTrending": false,
+    "openingHours": {
+      "open": "08:00",
+      "close": "22:00"
+    },
+    "featuredReview": {
+      "author": "Papuna",
+      "comment": "Echoes of the past",
+      "stars": 1
+    },
+    "accessibility": [],
+    "mysteryScore": 54,
+    "coordinates": {
+      "lat": 42.2154224152,
+      "lng": 42.7177555977
+    }
   }
 ]
