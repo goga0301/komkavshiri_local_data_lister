@@ -187,3 +187,21 @@ const kutaisiBoundary: [number, number][] = [
   [42.25263911784507, 42.637567448240034],
   [42.246324631688, 42.63741646563938],
 ];
+
+const kutaisiBounds = L.latLngBounds(
+  [42.1856, 42.5853],
+  [42.3004, 42.7495]
+);
+
+const outerBounds: [number, number][] = [
+  [90, -180],
+  [90, 180],
+  [-90, 180],
+  [-90, -180],
+];
+
+type Props = {
+  items: ILocalItem[];
+  onSelectItem: (item: ILocalItem) => void;
+  onRequestAddItem: (coords: { lat: number; lng: number }) => void;
+};
