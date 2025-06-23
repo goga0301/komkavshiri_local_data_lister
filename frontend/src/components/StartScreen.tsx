@@ -1,3 +1,7 @@
+import React from 'react';
+
+type Props = { onStart: () => void };
+
 export default function StartScreen({ onStart }: Props) {
   return (
     <div className="start-screen">

@@ -10,4 +10,11 @@ function App() {
   if (!started) {
     return <StartScreen onStart={() => setStarted(true)} />;
   }
+
+  return (
+  <div className="app-container">
+
+  </div>
+  );
 }
+export default App;
