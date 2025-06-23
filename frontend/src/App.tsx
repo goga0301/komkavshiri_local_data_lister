@@ -13,7 +13,16 @@ function App() {
 
   return (
   <div className="app-container">
-
+      <div className="map-wrapper">
+        <MapView
+          items={filteredItems}
+          onSelectItem={setSelectedItem}
+          onRequestAddItem={(coords) => {
+            setPendingCoords(coords);
+            setAddingItem(true);
+          }}
+        />
+      </div>
   </div>
   );
 }
