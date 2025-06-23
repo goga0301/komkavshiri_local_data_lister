@@ -1,5 +1,47 @@
+import React, { useState } from "react";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Polygon,
+  useMapEvents,
+} from "react-leaflet";
 import { ILocalItem } from "../types/ILocalItem";
+import L from "leaflet";
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
+const tempMarkerIcon = new L.Icon({
+  iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+  iconSize: [40, 41],
+  iconAnchor: [12, 41],
+});
+
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: markerIcon2x,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+});
+
+function isPointInsidePolygon(point: [number, number], polygon: [number, number][]) {
+  let x = point[1], y = point[0];
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    let xi = polygon[i][1], yi = polygon[i][0];
+    let xj = polygon[j][1], yj = polygon[j][0];
+    let intersect = yi > y !== yj > y &&
+      x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+
+
+// Add near the top of MapView.tsx
 const kutaisiBoundary: [number, number][] = [
   [42.246640288470296, 42.636893729879944],
   [42.24435292169459, 42.627280692937774],
@@ -205,3 +247,113 @@ type Props = {
   onSelectItem: (item: ILocalItem) => void;
   onRequestAddItem: (coords: { lat: number; lng: number }) => void;
 };
+
+function MapClickHandler({
+  onRequestAddItem,
+  setTempMarker,
+}: {
+  onRequestAddItem: Props["onRequestAddItem"];
+  setTempMarker: React.Dispatch<
+    React.SetStateAction<{ lat: number; lng: number } | null>
+  >;
+}) {
+  useMapEvents({
+    click(e) {
+      const clickedPoint: [number, number] = [e.latlng.lat, e.latlng.lng];
+      if (isPointInsidePolygon(clickedPoint, kutaisiBoundary)) {
+        setTempMarker({ lat: e.latlng.lat, lng: e.latlng.lng });
+      } else {
+        alert("Selected location is outside of Kutaisi boundary.");
+      }
+    },
+  });
+  return null;
+}
+
+
+export default function MapView({
+  items,
+  onSelectItem,
+  onRequestAddItem,
+}: Props) {
+  const [tempMarker, setTempMarker] = useState<{
+    lat: number;
+    lng: number;
+  } | null>(null);
+
+  return (
+    <MapContainer
+      center={[42.267, 42.7]}
+      zoom={13}
+      minZoom={12}
+      maxBounds={kutaisiBounds}
+      style={{ height: "100vh", width: "100%" }}
+      zoomControl={true}
+    >
+      <TileLayer
+        attribution=""
+        url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
+      />
+
+      <MapClickHandler
+        onRequestAddItem={onRequestAddItem}
+        setTempMarker={setTempMarker}
+      />
+
+{tempMarker && (
+  <Marker
+    position={[tempMarker.lat, tempMarker.lng]}
+    icon={tempMarkerIcon}
+  >
+    <Popup>
+      <div>
+        <strong>Add new item here?</strong>
+        <br />
+        <button
+          onClick={() => {
+            onRequestAddItem(tempMarker); // Correct coordinates passed
+            setTempMarker(null); // Clear after submission
+          }}
+          style={{color: "white", backgroundColor: "green", border: "none", borderRadius: '2px', cursor: "pointer"}}
+        >
+          Yes
+        </button>{" "}
+        <button onClick={() => setTempMarker(null)} 
+        style={{color: "white", backgroundColor: "red", border: "none", borderRadius: '2px', cursor: "pointer"}}>No</button>
+      </div>
+    </Popup>
+  </Marker>
+)}
+
+      {items.map(
+        (item) =>
+          item.coordinates && (
+            <Marker
+              key={item.id}
+              position={[item.coordinates.lat, item.coordinates.lng]}
+              eventHandlers={{ click: () => onSelectItem(item) }}
+            >
+              <Popup>
+                <strong>{item.name}</strong>
+                <br />
+                {item.description}
+              </Popup>
+            </Marker>
+          )
+      )}
+
+      <Polygon
+        positions={kutaisiBoundary}
+        pathOptions={{ color: "#037D50", weight: 3, fill: false }}
+      />
+      <Polygon
+        positions={[outerBounds, kutaisiBoundary]}
+        pathOptions={{
+          fillColor: "rgba(0,0,0,0.7)",
+          fillRule: "evenodd",
+          color: "transparent",
+        }}
+      />
+    </MapContainer>
+  );
+}
