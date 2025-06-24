@@ -1,4 +1,5 @@
 import React from 'react';
+import './ui/StartScreen.css';
 
 type Props = { onStart: () => void };
 
