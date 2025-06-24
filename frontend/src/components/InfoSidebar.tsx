@@ -17,4 +17,19 @@ export default function InfoSidebar({ selectedItem, onDelete, onEdit, sessionIte
       setImgError(true);
       return;
     }
+
+    const img = new Image();
+    img.src = selectedItem.imageUrl;
+
+    img.onload = () => setImgError(false);
+    img.onerror = () => setImgError(true);
+  }, [selectedItem]);
+
+      if (!selectedItem) {
+    return (
+      <div className="info-sidebar empty">
+        <p>🧭 Click on a marker to learn more about it! <br /><br />🧭 Click on empty space to mark place and click on marker to add item!</p>
+      </div>
+    );
+  }
 }
