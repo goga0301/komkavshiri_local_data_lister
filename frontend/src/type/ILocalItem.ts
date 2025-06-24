@@ -65,3 +65,5 @@ export interface ILocalItem {
   accessibility: string[];
   mysteryScore: number;
 }
+
+// For documentation see backend/src/Types/ILocalItem.ts
