@@ -9,12 +9,10 @@
   }
   
   .start-screen h1 {
-    font-size: 6.5rem;
-    margin-bottom: -2rem;
-    color: #ff1493;
-    text-shadow: 2px 2px 0 lime, -2px -2px 0 cyan;
-    letter-spacing: -5px;
+    font-size: 3rem;
+    margin-bottom: 1rem;
   }
+  
   
   .start-screen button {
     font-size: 0.5rem;
