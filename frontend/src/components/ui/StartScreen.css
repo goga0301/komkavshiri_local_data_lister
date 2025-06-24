@@ -13,20 +13,18 @@
     margin-bottom: 1rem;
   }
   
-  
   .start-screen button {
-    font-size: 0.5rem;
-    padding: 2px 4px;
-    border-radius: 0;
-    background-color: #00ff00;
-    color: #0000ff;
-    border: 5px dotted red;
-    cursor: not-allowed;
-    transition: none;
-    box-shadow: inset 5px 5px 10px orange;
+    font-size: 1.25rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    background-color: #2b2d42;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
   }
   
   .start-screen button:hover {
-    background-color: #ffff00;
-    col
+    background-color: #ef233c;
+  }
   
