@@ -12,7 +12,7 @@ type FiltersProps = {
   allTags: string[];
   onEventsToggle: () => void;
   onlyEvents: boolean;
-  onClose: () => void;  // new prop to close filters
+  onClose: () => void;  
 };
 
 const Filters: React.FC<FiltersProps> = ({
