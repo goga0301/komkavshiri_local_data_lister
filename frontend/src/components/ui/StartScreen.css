@@ -1,11 +1,11 @@
 .start-screen {
     height: 100vh;
-    display: block;
-    background: repeating-linear-gradient(45deg, #ff0, #f0f 10px, #0ff 20px);
-    text-align: left;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    padding: 50px;
-    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #edf2f4, #8d99ae);
+    text-align: center;
   }
   
   .start-screen h1 {
