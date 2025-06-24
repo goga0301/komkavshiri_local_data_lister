@@ -32,4 +32,6 @@ export default function InfoSidebar({ selectedItem, onDelete, onEdit, sessionIte
       </div>
     );
   }
+
+    const isEditable = sessionItemIds.has(selectedItem.id);
 }
