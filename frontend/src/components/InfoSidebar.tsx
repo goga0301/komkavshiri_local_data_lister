@@ -34,4 +34,24 @@ export default function InfoSidebar({ selectedItem, onDelete, onEdit, sessionIte
   }
 
     const isEditable = sessionItemIds.has(selectedItem.id);
+
+      return (
+    <div className="info-sidebar">
+      {!imgError && selectedItem.imageUrl && (
+        <img 
+          src={selectedItem.imageUrl} 
+          alt={selectedItem.name} 
+          onError={() => setImgError(true)} 
+          style={{ maxWidth: '100%', height: 'auto' }}
+        />
+      )}
+      <h2>{selectedItem.name}</h2>
+      <p>{selectedItem.description}</p>
+      <p><strong>Location:</strong> {selectedItem.location}</p>
+      <p><strong>Rating:</strong> {selectedItem.rating} ⭐</p>
+      <p><strong>Tags:</strong> {selectedItem.tags.join(', ')}</p>
+      <p><strong>Open:</strong> {selectedItem.openingHours.open} - {selectedItem.openingHours.close}</p>
+      <p><strong>Mystery Score:</strong> {selectedItem.mysteryScore} 🕵️</p>
+      </div>
+      );
 }
