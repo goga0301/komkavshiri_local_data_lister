@@ -1,34 +1,29 @@
 .start-screen {
-    height: 100vh;
-    display: block;
-    background: repeating-linear-gradient(45deg, #ff0, #f0f 10px, #0ff 20px);
-    text-align: left;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    padding: 50px;
-    overflow: scroll;
-  }
-  
-  .start-screen h1 {
-    font-size: 6.5rem;
-    margin-bottom: -2rem;
-    color: #ff1493;
-    text-shadow: 2px 2px 0 lime, -2px -2px 0 cyan;
-    letter-spacing: -5px;
-  }
-  
-  .start-screen button {
-    font-size: 0.5rem;
-    padding: 2px 4px;
-    border-radius: 0;
-    background-color: #00ff00;
-    color: #0000ff;
-    border: 5px dotted red;
-    cursor: not-allowed;
-    transition: none;
-    box-shadow: inset 5px 5px 10px orange;
-  }
-  
-  .start-screen button:hover {
-    background-color: #ffff00;
-    col
-  
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #edf2f4, #8d99ae);
+  text-align: center;
+}
+
+.start-screen h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.start-screen button {
+  font-size: 1.25rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  background-color: #2b2d42;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.start-screen button:hover {
+  background-color: #ef233c;
+}
