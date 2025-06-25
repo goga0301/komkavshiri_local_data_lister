@@ -8,10 +8,7 @@
   padding: 12px;
   font-weight: bold;
 }
+
 .status-msg.error {
-  color: #ffcc00;
-  background: #222;
-  border: 3px dotted pink;
-  font-size: 32px;
-  letter-spacing: 3px;
+  color: red;
 }
