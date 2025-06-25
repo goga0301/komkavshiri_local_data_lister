@@ -36,3 +36,22 @@
   margin: 0.5rem 0;
   color: #2b2d42;
 }
+
+.info-sidebar p {
+  margin: 0.5rem 0;
+  line-height: 1.4;
+  color: #333;
+}
+
+.info-sidebar strong {
+  color: #2b2d42;
+}
+
+.info-sidebar blockquote {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #f8f9fa;
+  border-left: 4px solid #ef233c;
+  font-style: italic;
+  color: #444;
+}
