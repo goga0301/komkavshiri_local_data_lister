@@ -1,1 +1,26 @@
+.localitem-card {
+  border: 5px dotted red;
+  background: linear-gradient(to right, lime, hotpink);
+  padding: 3px 50px 1px 7px;
+  border-radius: 0;
+  margin-bottom: -5px;
+  box-shadow: inset 0 0 20px yellow;
+  font-family: Comic Sans MS, cursive;
+  font-size: 22px;
+  transition: none;
+  cursor: help;
+  transform: rotate(1deg);
+}
 
+.localitem-card:hover {
+  background: repeating-linear-gradient(
+    45deg,
+    cyan,
+    cyan 10px,
+    magenta 10px,
+    magenta 20px
+  );
+  color: orange;
+  text-decoration: underline wavy blue;
+  letter-spacing: 5px;
+}
