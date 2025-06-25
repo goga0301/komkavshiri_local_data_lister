@@ -12,7 +12,7 @@ type FiltersProps = {
   allTags: string[];
   onEventsToggle: () => void;
   onlyEvents: boolean;
-  onClose: () => void;  // new prop to close filters
+  onClose: () => void;  
 };
 
 const Filters: React.FC<FiltersProps> = ({
@@ -29,7 +29,7 @@ const Filters: React.FC<FiltersProps> = ({
   onlyEvents,
   onClose,
 }) => {
-      return (
+  return (
     <div className="filters">
       <input
         type="text"
@@ -37,5 +37,45 @@ const Filters: React.FC<FiltersProps> = ({
         value={searchQuery}
         onChange={(e) => onSearchChange(e.target.value)}
       />
-      );
-      }
+
+      <select value={selectedTag} onChange={(e) => onTagChange(e.target.value)}>
+        <option value="">All Tags</option>
+        {allTags.map((tag) => (
+          <option key={tag} value={tag}>
+            {tag}
+          </option>
+        ))}
+      </select>
+
+      <label>
+        ⭐ Min Rating:
+        <input
+          type="range"
+          min={0}
+          max={5}
+          step={1}
+          value={minRating}
+          onChange={(e) => onRatingChange(Number(e.target.value))}
+        />
+        {minRating}+
+      </label>
+
+      <label>
+        <input type="checkbox" checked={onlyEvents} onChange={onEventsToggle} />
+        📅 Events only
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          checked={onlyTrending}
+          onChange={onTrendingToggle}
+        />
+        🔥 Trending only
+      </label>
+    </div>
+  );
+};
+
+export default Filters;
+
