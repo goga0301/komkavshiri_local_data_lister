@@ -15,8 +15,5 @@
 }
 
 .localitem-card:hover {
-  background: repeating-linear-gradient(45deg, pink, cyan 10px, magenta 20px);
-  transform: rotate(3deg) scale(1.05);
-  color: #00ff00;
-  border: 3px dashed blue;
+  background: #f2f2f2;
 }
