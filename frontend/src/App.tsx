@@ -46,6 +46,45 @@ function App() {
         onEdit={setEditingItem}
         sessionItemIds={sessionItemIds}
       />
+      <div className="map-wrapper">
+        <MapView
+          items={filteredItems}
+          onSelectItem={setSelectedItem}
+          onRequestAddItem={(coords) => {
+            setPendingCoords(coords);
+            setAddingItem(true);
+          }}
+        />
+
+        {addingItem && (
+        <AddItemModal
+          onClose={() => {
+            setAddingItem(false);
+            setPendingCoords(null);
+          }}
+          onSubmit={(data) => {
+            if (!pendingCoords) return;
+            const fullItem: ILocalItem = {
+              id: uuidv4(),
+              name: data.name || "",
+              type: data.type || "secret_spot",
+              description: data.description || "",
+              location: data.location || "",
+              rating: data.rating || 0,
+              tags: data.tags || [],
+              imageUrl: data.imageUrl || "",
+              isTrending: data.isTrending || false,
+              openingHours: data.openingHours || { open: "", close: "" },
+              featuredReview: data.featuredReview || { author: "", comment: "", stars: 0 },
+              accessibility: data.accessibility || [],
+              mysteryScore: data.mysteryScore || 0,
+              coordinates: pendingCoords,
+            };
+            axios.post("http://localhost:3001/api/local-items", fullItem)
+              .then((res) => {
+          }}
+        />
+        </div>
       </div>
       )
       }
