@@ -1,14 +1,14 @@
 .localitem-card {
-  border: 5px dotted red;
-  background: linear-gradient(to bottom, yellow, lime);
-  padding: 2px 30px 0px 5px;
-  border-radius: 0px;
-  margin-bottom: 25px;
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
   font-family: "Comic Sans MS", cursive, sans-serif;
   font-size: 22px;
-  transition: none;
+  transition: all 0.2s;
   box-shadow: inset 5px 5px 15px orange;
-  cursor: wait;
+  cursor: pointer;
   text-align: center;
   color: purple;
   letter-spacing: 3px;
