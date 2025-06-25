@@ -55,3 +55,25 @@
   font-style: italic;
   color: #444;
 }
+
+/* Container for the buttons */
+.info-sidebar .action-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Base styles for both buttons */
+.info-sidebar .action-buttons button {
+  flex: 1;
+  padding: 10px 15px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
