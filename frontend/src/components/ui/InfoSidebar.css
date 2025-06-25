@@ -20,3 +20,19 @@
   text-align: center;
   padding: 1rem;
 }
+
+.info-sidebar img {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.info-sidebar h2 {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  color: #2b2d42;
+}
