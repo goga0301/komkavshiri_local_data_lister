@@ -1,11 +1,84 @@
 import React, { useEffect, useState, useMemo } from "react";
+import MapView from "./components/MapView";
+import InfoSidebar from "./components/InfoSidebar";
 import StartScreen from "./components/StartScreen";
+import Filters from "./components/Filters";
+import { ILocalItem, LocalItemType } from "./types/ILocalItem";
+import { fetchLocalItems } from "./services/api";
 import "./App.css";
-
+import axios from "axios";
+import AddItemModal from "./components/AddItemModel";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
-
+  const [items, setItems] = useState<ILocalItem[]>([]);
+  const [selectedItem, setSelectedItem] = useState<ILocalItem | null>(null);
   const [started, setStarted] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTag, setSelectedTag] = useState("");
+  const [minRating, setMinRating] = useState(0);
+  const [onlyTrending, setOnlyTrending] = useState(false);
+  const [onlyEvents, setOnlyEvents] = useState(false);
+  const [addingItem, setAddingItem] = useState(false);
+  const [editingItem, setEditingItem] = useState<ILocalItem | null>(null);
+  const [pendingCoords, setPendingCoords] = useState<{ lat: number; lng: number } | null>(null);
+  const [sessionItemIds, setSessionItemIds] = useState<Set<string>>(new Set());
+
+  // NEW: State to toggle filter panel visibility
+  const [filtersVisible, setFiltersVisible] = useState(false);
+
+  useEffect(() => {
+    fetchLocalItems().then(setItems);
+  }, []);
+
+  const filteredItems = useMemo(() => {
+    return items.filter((item) => {
+      const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesTag = selectedTag === "" || item.tags.includes(selectedTag);
+      const matchesRating = item.rating >= minRating;
+      const matchesTrending = !onlyTrending || item.isTrending;
+      const matchesEvent = !onlyEvents || item.type === "event";
+      return matchesSearch && matchesTag && matchesRating && matchesTrending && matchesEvent;
+    });
+  }, [items, searchQuery, selectedTag, minRating, onlyTrending, onlyEvents]);
+
+  const allTags = useMemo(() => {
+    const tagSet = new Set<string>();
+    items.forEach((item) => item.tags.forEach((tag) => tagSet.add(tag)));
+    return Array.from(tagSet);
+  }, [items]);
+
+  const handleDelete = (itemId: string) => {
+    axios.delete(`http://localhost:3001/api/local-items/${itemId}`)
+      .then(() => {
+        setItems((prev) => prev.filter((i) => i.id !== itemId));
+        setSessionItemIds((prev) => {
+          const copy = new Set(prev);
+          copy.delete(itemId);
+          return copy;
+        });
+        setSelectedItem(null);
+      })
+      .catch((err) => {
+        alert("Failed to delete item.");
+        console.error(err);
+      });
+  };
+
+  const handleEditSubmit = (updatedData: Partial<ILocalItem>) => {
+    if (!editingItem) return;
+    const updatedItem = { ...editingItem, ...updatedData };
+    axios.put(`http://localhost:3001/api/local-items/${editingItem.id}`, updatedItem)
+      .then((res) => {
+        setItems((prev) => prev.map((i) => i.id === editingItem.id ? res.data : i));
+        setEditingItem(null);
+        setSelectedItem(res.data);
+      })
+      .catch((err) => {
+        alert("Failed to update item.");
+        console.error(err);
+      });
+  };
 
   if (!started) {
     return <StartScreen onStart={() => setStarted(true)} />;
@@ -55,8 +128,9 @@ function App() {
             setAddingItem(true);
           }}
         />
+      </div>
 
-        {addingItem && (
+      {addingItem && (
         <AddItemModal
           onClose={() => {
             setAddingItem(false);
@@ -96,8 +170,17 @@ function App() {
               });
           }}
         />
-        </div>
-      </div>
-      )
-      }
+      )}
+      {editingItem && (
+        <AddItemModal
+          onClose={() => setEditingItem(null)}
+          onSubmit={handleEditSubmit}
+          initialData={editingItem}
+          submitLabel="Edit"
+        />
+      )}
+    </div>
+  );
+}
+
 export default App;
