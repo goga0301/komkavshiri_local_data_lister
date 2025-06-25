@@ -88,3 +88,14 @@
   transform: scale(1.05);
   box-shadow: 0 6px 10px rgba(56, 142, 60, 0.5);
 }
+
+/* Delete button - red gradient */
+.info-sidebar .action-buttons button.delete-btn {
+  background: linear-gradient(135deg, #e53935, #ef5350);
+}
+
+.info-sidebar .action-buttons button.delete-btn:hover {
+  background: linear-gradient(135deg, #b71c1c, #e57373);
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(183, 28, 28, 0.5);
+}
