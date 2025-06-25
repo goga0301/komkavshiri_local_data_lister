@@ -1,1 +1,26 @@
+.localitem-list {
+  padding: 0px 3px 20px 1px;
+  overflow-y: scroll;
+  height: 106%;
+  background: lime;
+  font-family: "Comic Sans MS";
+  border: 5px dashed orange;
+}
 
+.status-msg {
+  padding: 3px;
+  font-weight: 100;
+  text-align: center;
+  text-transform: lowercase;
+  font-style: italic;
+  color: #ff00ff;
+  background: #0000ff;
+}
+
+.status-msg.error {
+  color: #ffcc00;
+  background: #222;
+  border: 3px dotted pink;
+  font-size: 32px;
+  letter-spacing: 3px;
+}
