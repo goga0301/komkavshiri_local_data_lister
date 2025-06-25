@@ -77,3 +77,14 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+/* Edit button - green gradient */
+.info-sidebar .action-buttons button.edit-btn {
+  background: linear-gradient(135deg, #4caf50, #81c784);
+}
+
+.info-sidebar .action-buttons button.edit-btn:hover {
+  background: linear-gradient(135deg, #388e3c, #66bb6a);
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(56, 142, 60, 0.5);
+}
