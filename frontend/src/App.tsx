@@ -82,6 +82,18 @@ function App() {
             };
             axios.post("http://localhost:3001/api/local-items", fullItem)
               .then((res) => {
+                setItems((prev) => [...prev, res.data]);
+                setSessionItemIds((prev) => new Set(prev).add(res.data.id));
+                setAddingItem(false);
+                setPendingCoords(null);
+              })
+              .catch((error) => {
+                if (error.response) {
+                  console.error("Backend responded with error:", error.response.status, error.response.data);
+                } else {
+                  console.error("Request failed:", error.message);
+                }
+              });
           }}
         />
         </div>
