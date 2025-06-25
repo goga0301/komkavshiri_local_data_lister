@@ -1,1 +1,22 @@
+.info-sidebar {
+  width: 320px;
+  height: 100vh;
+  background-color: #ffffff;
+  border-right: 1px solid #ddd;
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 999;
+  position: relative;
+}
 
+.info-sidebar.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-style: italic;
+  height: 100%;
+  text-align: center;
+  padding: 1rem;
+}
