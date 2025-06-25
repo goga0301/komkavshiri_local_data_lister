@@ -1,1 +1,14 @@
+.localitem-list {
+  padding: 12px;
+  overflow-y: auto;
+  height: 100%;
+}
 
+.status-msg {
+  padding: 12px;
+  font-weight: bold;
+}
+
+.status-msg.error {
+  color: red;
+}
