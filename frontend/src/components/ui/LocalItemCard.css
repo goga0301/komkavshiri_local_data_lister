@@ -4,14 +4,8 @@
   padding: 10px;
   border-radius: 8px;
   margin-bottom: 10px;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  font-size: 22px;
   transition: all 0.2s;
-  box-shadow: inset 5px 5px 15px orange;
   cursor: pointer;
-  text-align: center;
-  color: purple;
-  letter-spacing: 3px;
 }
 
 .localitem-card:hover {
