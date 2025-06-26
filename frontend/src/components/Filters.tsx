@@ -1,22 +1,33 @@
 import React from "react";
 
+/**
+ * Props accepted by the Filters component.
+ * These control the various filter inputs shown to the user.
+ */
 type FiltersProps = {
-  searchQuery: string;
-  onSearchChange: (query: string) => void;
-  selectedTag: string;
-  onTagChange: (tag: string) => void;
-  minRating: number;
-  onRatingChange: (rating: number) => void;
-  onlyTrending: boolean;
-  onTrendingToggle: () => void;
-  onlyEvents: boolean;
-  onEventsToggle: () => void;
-  onlyBookmarks: boolean; 
-  onBookmarksToggle: () => void; 
-  allTags: string[];
-  onClose: () => void;
+  searchQuery: string;                   // Current search input value
+  onSearchChange: (query: string) => void;  // Handler to update search input
+  selectedTag: string;                  // Currently selected tag
+  onTagChange: (tag: string) => void;   // Handler to update tag filter
+  minRating: number;                    // Minimum rating value
+  onRatingChange: (rating: number) => void; // Handler to update minimum rating
+  onlyTrending: boolean;                // Whether to filter only trending items
+  onTrendingToggle: () => void;         // Handler to toggle trending filter
+  onlyEvents: boolean;                  // Whether to filter only event items
+  onEventsToggle: () => void;           // Handler to toggle events filter
+  onlyBookmarks: boolean;               // Whether to show only bookmarked items
+  onBookmarksToggle: () => void;        // Handler to toggle bookmarks filter
+  allTags: string[];                    // List of all available tags
+  onClose: () => void;                  // Callback to close the filter panel
 };
 
+/**
+ * Filters component allows users to search and filter items based on:
+ * - name
+ * - tag
+ * - rating
+ * - type (event/trending/bookmarked)
+ */
 const Filters: React.FC<FiltersProps> = ({
   searchQuery,
   onSearchChange,
@@ -35,6 +46,7 @@ const Filters: React.FC<FiltersProps> = ({
 }) => {
   return (
     <div className="filters">
+      {/*  Search input by name */}
       <input
         type="text"
         placeholder="🔍 Search by name..."
@@ -42,6 +54,7 @@ const Filters: React.FC<FiltersProps> = ({
         onChange={(e) => onSearchChange(e.target.value)}
       />
 
+      {/* 🏷 Tag filter dropdown */}
       <select value={selectedTag} onChange={(e) => onTagChange(e.target.value)}>
         <option value="">All Tags</option>
         {allTags.map((tag) => (
@@ -51,6 +64,7 @@ const Filters: React.FC<FiltersProps> = ({
         ))}
       </select>
 
+      {/*  Minimum rating filter */}
       <label>
         ⭐ Min Rating:
         <input
@@ -64,11 +78,13 @@ const Filters: React.FC<FiltersProps> = ({
         {minRating}+
       </label>
 
+      {/*  Events only filter */}
       <label>
         <input type="checkbox" checked={onlyEvents} onChange={onEventsToggle} />
         📅 Events only
       </label>
 
+      {/*  Trending only filter */}
       <label>
         <input
           type="checkbox"
@@ -78,7 +94,7 @@ const Filters: React.FC<FiltersProps> = ({
         🔥 Trending only
       </label>
 
-      {/* ✅ Bookmarks filter */}
+      {/*  Bookmarked only filter */}
       <label>
         <input
           type="checkbox"
