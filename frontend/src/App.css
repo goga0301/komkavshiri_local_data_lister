@@ -122,3 +122,20 @@
   font-size: 1rem;
   margin-top: 6px;
 }
+
+.filters-toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #4caf50, #81c784);
+  border: none;
+  color: white;
+  padding: 12px 18px;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(72, 176, 72, 0.5);
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
