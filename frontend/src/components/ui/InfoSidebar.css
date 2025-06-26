@@ -1,3 +1,4 @@
+/* Sidebar container for displaying item details */
 .info-sidebar {
   width: 320px;
   height: 100vh;
@@ -10,6 +11,7 @@
   position: relative;
 }
 
+/* Styling for empty state when no item is selected */
 .info-sidebar.empty {
   display: flex;
   align-items: center;
@@ -21,6 +23,7 @@
   padding: 1rem;
 }
 
+/* Displayed image at the top of the sidebar */
 .info-sidebar img {
   width: 100%;
   height: auto;
@@ -31,22 +34,26 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Main item name */
 .info-sidebar h2 {
   font-size: 1.5rem;
   margin: 0.5rem 0;
   color: #2b2d42;
 }
 
+/* General text content under each label */
 .info-sidebar p {
   margin: 0.5rem 0;
   line-height: 1.4;
   color: #333;
 }
 
+/* Emphasis for labels in item details */
 .info-sidebar strong {
   color: #2b2d42;
 }
 
+/* Featured review block styling */
 .info-sidebar blockquote {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
@@ -56,7 +63,7 @@
   color: #444;
 }
 
-/* Container for the buttons */
+/* Container holding the Edit and Delete buttons */
 .info-sidebar .action-buttons {
   margin-top: 1rem;
   display: flex;
@@ -64,7 +71,7 @@
   justify-content: center;
 }
 
-/* Base styles for both buttons */
+/* Base button styling shared by Edit and Delete */
 .info-sidebar .action-buttons button {
   flex: 1;
   padding: 10px 15px;
@@ -78,36 +85,38 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Edit button - green gradient */
+/* Green gradient style for Edit button */
 .info-sidebar .action-buttons button.edit-btn {
   background: linear-gradient(135deg, #4caf50, #81c784);
 }
 
+/* Hover effect for Edit button */
 .info-sidebar .action-buttons button.edit-btn:hover {
   background: linear-gradient(135deg, #388e3c, #66bb6a);
   transform: scale(1.05);
   box-shadow: 0 6px 10px rgba(56, 142, 60, 0.5);
 }
 
-/* Delete button - red gradient */
+/* Red gradient style for Delete button */
 .info-sidebar .action-buttons button.delete-btn {
   background: linear-gradient(135deg, #e53935, #ef5350);
 }
 
+/* Hover effect for Delete button */
 .info-sidebar .action-buttons button.delete-btn:hover {
   background: linear-gradient(135deg, #b71c1c, #e57373);
   transform: scale(1.05);
   box-shadow: 0 6px 10px rgba(183, 28, 28, 0.5);
 }
 
-/* Container to position bookmark button below edit/delete */
+/* Container for the bookmark button positioned below action buttons */
 .info-sidebar .bookmark-button-container {
   margin-top: 0.8rem;
   display: flex;
   justify-content: center;
 }
 
-/* Bookmark button styling (already declared, but update for spacing + hover) */
+/* Style for the bookmark toggle button */
 .info-sidebar .bookmark-btn {
   padding: 10px 15px;
   font-weight: 600;
@@ -122,12 +131,14 @@
   width: 80%;
 }
 
+/* Hover state for enabled bookmark button */
 .info-sidebar .bookmark-btn:hover:enabled {
   background: linear-gradient(135deg, #fbc02d, #fdd835);
   transform: scale(1.05);
   box-shadow: 0 6px 10px rgba(251, 192, 45, 0.5);
 }
 
+/* Disabled state for bookmark button */
 .info-sidebar .bookmark-btn:disabled {
   background: #e0e0e0;
   color: #777;

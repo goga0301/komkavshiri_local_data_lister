@@ -1,13 +1,29 @@
+/* Container style for each local item card */
 .localitem-card {
+  /* Light border to separate from background */
   border: 1px solid #ddd;
+
+  /* Card background color */
   background: #fff;
+
+  /* Inner spacing */
   padding: 10px;
+
+  /* Rounded corners */
   border-radius: 8px;
+
+  /* Vertical margin between cards */
   margin-bottom: 10px;
+
+  /* Smooth transition for hover effects */
   transition: all 0.2s;
+
+  /* Changes cursor to pointer on hover to indicate clickability */
   cursor: pointer;
 }
 
+/* Hover state styling for item card */
 .localitem-card:hover {
+  /* Slightly darker background to indicate interactivity */
   background: #f2f2f2;
 }

@@ -1,43 +1,43 @@
-/* Biggest Z-index */
+/*  Modal Overlay — Fullscreen dimmed background with highest z-index */
 .modal-overlay {
-  position: fixed;
+  position: fixed;              /* Sticks to viewport */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 2rem;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 2147483647;
-  display: flex;
+  padding: 2rem;                /* Outer spacing */
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+  z-index: 2147483647;          /* Very high to stay on top of all elements */
+  display: flex;                /* Center the modal box */
   justify-content: center;
   align-items: center;
-  overflow-y: auto;
+  overflow-y: auto;             /* Scrollable if modal overflows */
 }
 
-/* Form Container */
+/*  Modal Content — the form box inside the overlay */
 .modal-content {
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 2rem;
+  background-color: #ffffff;    /* White background */
+  border-radius: 16px;          /* Rounded corners */
+  padding: 2rem;                /* Inner spacing */
   max-width: 900px;
   width: 100%;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); /* Deep shadow for elevation */
+  display: grid;                /* Responsive layout for form fields */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Auto fit fields */
+  gap: 1.5rem;                  /* Spacing between fields */
   box-sizing: border-box;
 }
 
-/* Form Title */
+/*  Modal Heading */
 .modal-content h3 {
-  grid-column: 1 / -1;
+  grid-column: 1 / -1;          /* Span full row width */
   font-size: 1.75rem;
   margin-bottom: 0.5rem;
   text-align: center;
   color: #333;
 }
 
-/* Input Fields */
+/* 🏷 Input Labels */
 .modal-content label {
   display: flex;
   flex-direction: column;
@@ -46,6 +46,7 @@
   color: #444;
 }
 
+/*  Input & Select styling */
 .modal-content input,
 .modal-content select {
   padding: 0.6rem 0.75rem;
@@ -58,13 +59,14 @@
   transition: border-color 0.2s ease;
 }
 
+/*  Focus effect on input */
 .modal-content input:focus,
 .modal-content select:focus {
-  border-color: #4caf50;
+  border-color: #4caf50; /* Green border on focus */
   outline: none;
 }
 
-/* Buttons */
+/*  Buttons (Submit & Cancel) */
 .modal-content button {
   padding: 0.75rem 1.5rem;
   border-radius: 10px;
@@ -75,6 +77,7 @@
   transition: all 0.3s ease;
 }
 
+/*  Submit Button */
 .modal-content button:nth-of-type(1) {
   background-color: #28a745;
   color: white;
@@ -85,6 +88,7 @@
   background-color: #218838;
 }
 
+/*  Cancel Button */
 .modal-content button:nth-of-type(2) {
   background-color: #dc3545;
   color: white;
@@ -95,11 +99,11 @@
   background-color: #c82333;
 }
 
-/* Responsive Tweaks */
+/*  Tablet Optimization */
 @media (max-width: 768px) {
   .modal-content {
     padding: 1.5rem;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Stack inputs vertically */
   }
 
   .modal-content h3 {
@@ -108,10 +112,11 @@
 
   .modal-content button {
     width: 100%;
-    grid-column: 1 / -1;
+    grid-column: 1 / -1; /* Full row buttons */
   }
 }
 
+/*  Mobile Optimization */
 @media (max-width: 480px) {
   .modal-overlay {
     padding: 1rem;

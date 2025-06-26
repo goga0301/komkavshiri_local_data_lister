@@ -13,12 +13,14 @@ import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
+//  Custom icon for temporary marker (when placing a new item)
 const tempMarkerIcon = new L.Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
   iconSize: [40, 41],
   iconAnchor: [12, 41],
 });
 
+//  Fix leaflet icon imports for default marker
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -27,6 +29,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow,
 });
 
+//  Utility: Check if point is inside polygon using ray-casting algorithm
 function isPointInsidePolygon(point: [number, number], polygon: [number, number][]) {
   let x = point[1], y = point[0];
   let inside = false;
@@ -40,8 +43,7 @@ function isPointInsidePolygon(point: [number, number], polygon: [number, number]
   return inside;
 }
 
-
-// Add near the top of MapView.tsx
+//  Define Kutaisi's polygon boundary (used for item placement validation)
 const kutaisiBoundary: [number, number][] = [
   [42.246640288470296, 42.636893729879944],
   [42.24435292169459, 42.627280692937774],
@@ -230,11 +232,13 @@ const kutaisiBoundary: [number, number][] = [
   [42.246324631688, 42.63741646563938],
 ];
 
+//  Define map constraint bounds to prevent panning too far outside Kutaisi
 const kutaisiBounds = L.latLngBounds(
   [42.1856, 42.5853],
   [42.3004, 42.7495]
 );
 
+//  Polygon to darken everything outside of the main city area
 const outerBounds: [number, number][] = [
   [90, -180],
   [90, 180],
@@ -242,12 +246,19 @@ const outerBounds: [number, number][] = [
   [-90, -180],
 ];
 
+//  Props passed to MapView
 type Props = {
   items: ILocalItem[];
   onSelectItem: (item: ILocalItem) => void;
   onRequestAddItem: (coords: { lat: number; lng: number }) => void;
 };
 
+/**
+ * MapClickHandler Component
+ * -------------------------
+ * Handles click interactions on the map.
+ * If the click is inside the Kutaisi boundary, it sets a temporary marker for potential item placement.
+ */
 function MapClickHandler({
   onRequestAddItem,
   setTempMarker,
@@ -270,7 +281,12 @@ function MapClickHandler({
   return null;
 }
 
-
+/**
+ * MapView Component
+ * -----------------
+ * Main map UI powered by Leaflet.
+ * Displays all item markers, allows selecting them, and handles new item placement.
+ */
 export default function MapView({
   items,
   onSelectItem,
@@ -283,48 +299,68 @@ export default function MapView({
 
   return (
     <MapContainer
-      center={[42.267, 42.7]}
+      center={[42.267, 42.7]}                  // Initial center of Kutaisi
       zoom={13}
       minZoom={12}
-      maxBounds={kutaisiBounds}
+      maxBounds={kutaisiBounds}               // Limit panning to Kutaisi bounds
       style={{ height: "100vh", width: "100%" }}
       zoomControl={true}
     >
+      {/* Base map tiles */}
       <TileLayer
         attribution=""
         url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
       />
 
+      {/* Click logic and temporary marker placement */}
       <MapClickHandler
         onRequestAddItem={onRequestAddItem}
         setTempMarker={setTempMarker}
       />
 
-{tempMarker && (
-  <Marker
-    position={[tempMarker.lat, tempMarker.lng]}
-    icon={tempMarkerIcon}
-  >
-    <Popup>
-      <div>
-        <strong>Add new item here?</strong>
-        <br />
-        <button
-          onClick={() => {
-            onRequestAddItem(tempMarker); // Correct coordinates passed
-            setTempMarker(null); // Clear after submission
-          }}
-          style={{color: "white", backgroundColor: "green", border: "none", borderRadius: '2px', cursor: "pointer"}}
+      {/* Show confirmation popup if user clicked a valid location */}
+      {tempMarker && (
+        <Marker
+          position={[tempMarker.lat, tempMarker.lng]}
+          icon={tempMarkerIcon}
         >
-          Yes
-        </button>{" "}
-        <button onClick={() => setTempMarker(null)} 
-        style={{color: "white", backgroundColor: "red", border: "none", borderRadius: '2px', cursor: "pointer"}}>No</button>
-      </div>
-    </Popup>
-  </Marker>
-)}
+          <Popup>
+            <div>
+              <strong>Add new item here?</strong>
+              <br />
+              <button
+                onClick={() => {
+                  onRequestAddItem(tempMarker); // Send coordinates to parent
+                  setTempMarker(null);         // Clear temporary marker
+                }}
+                style={{
+                  color: "white",
+                  backgroundColor: "green",
+                  border: "none",
+                  borderRadius: "2px",
+                  cursor: "pointer",
+                }}
+              >
+                Yes
+              </button>{" "}
+              <button
+                onClick={() => setTempMarker(null)}
+                style={{
+                  color: "white",
+                  backgroundColor: "red",
+                  border: "none",
+                  borderRadius: "2px",
+                  cursor: "pointer",
+                }}
+              >
+                No
+              </button>
+            </div>
+          </Popup>
+        </Marker>
+      )}
 
+      {/* Display all real item markers */}
       {items.map(
         (item) =>
           item.coordinates && (
@@ -342,10 +378,13 @@ export default function MapView({
           )
       )}
 
+      {/* City boundary outline */}
       <Polygon
         positions={kutaisiBoundary}
         pathOptions={{ color: "#037D50", weight: 3, fill: false }}
       />
+
+      {/* Darken everything outside city boundary */}
       <Polygon
         positions={[outerBounds, kutaisiBoundary]}
         pathOptions={{
