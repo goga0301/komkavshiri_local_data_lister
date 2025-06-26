@@ -94,3 +94,43 @@
 .modal-content button:nth-of-type(2):hover {
   background-color: #c82333;
 }
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content h3 {
+    font-size: 1.5rem;
+  }
+
+  .modal-content button {
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-overlay {
+    padding: 1rem;
+  }
+
+  .modal-content {
+    border-radius: 12px;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .modal-content input,
+  .modal-content select {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
+
+  .modal-content button {
+    font-size: 0.95rem;
+    padding: 0.65rem 1rem;
+  }
+}
