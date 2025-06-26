@@ -44,3 +44,15 @@
   overflow: hidden;
   position: relative;
 }
+
+.map-wrapper {
+  flex: none;
+  position: static;
+  margin: 100px;
+  padding: 50px 0 0 80px;
+  background-color: #ffcc00;
+  border: 7px groove purple;
+  z-index: 9999;
+  overflow: scroll;
+  box-shadow: inset 0 0 10px red;
+}
