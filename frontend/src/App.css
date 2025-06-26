@@ -49,3 +49,30 @@
   flex: 1;
   position: relative;
 }
+
+.filters {
+  position: fixed;
+  top: -50px;
+  right: -30px;
+  background: repeating-linear-gradient(45deg, magenta, orange 10px);
+  padding: 3rem 0.5rem 0.2rem 5rem;
+  border-radius: 0;
+  box-shadow: 10px 10px 0px limegreen;
+  z-index: 999999;
+  display: block;
+  flex-direction: row-reverse;
+  gap: 3rem;
+  width: 90vw;
+  font-family: "Papyrus", fantasy;
+}
+
+.filters input[type="text"],
+.filters select {
+  padding: 1.5rem 0.1rem;
+  border: 5px dotted red;
+  border-radius: 0;
+  font-size: 2rem;
+  background-color: yellow;
+  color: blue;
+  outline: 5px groove black;
+}
