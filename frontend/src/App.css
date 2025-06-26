@@ -101,3 +101,13 @@
   align-items: center;
   z-index: 2000;
 }
+
+.modal-content {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
