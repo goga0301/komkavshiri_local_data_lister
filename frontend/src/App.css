@@ -46,14 +46,6 @@
 }
 
 .map-wrapper {
-  flex: 10;
-  position: fixed;
-  top: -200px;
-  left: -100px;
-  background: linear-gradient(to bottom right, cyan, hotpink, lime);
-  border: 10px dashed brown;
-  padding: 100px 50px 30px 120px;
-  transform: rotate(3deg) scale(1.2);
-  font-size: 5rem;
-  opacity: 0.4;
+  flex: 1;
+  position: relative;
 }
