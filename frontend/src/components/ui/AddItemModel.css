@@ -74,3 +74,23 @@
   font-weight: bold;
   transition: all 0.3s ease;
 }
+
+.modal-content button:nth-of-type(1) {
+  background-color: #28a745;
+  color: white;
+  grid-column: span 1;
+}
+
+.modal-content button:nth-of-type(1):hover {
+  background-color: #218838;
+}
+
+.modal-content button:nth-of-type(2) {
+  background-color: #dc3545;
+  color: white;
+  grid-column: span 1;
+}
+
+.modal-content button:nth-of-type(2):hover {
+  background-color: #c82333;
+}
