@@ -111,3 +111,14 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.modal-content input,
+.modal-content select {
+  padding: 6px;
+  font-size: 1rem;
+}
+.modal-content button {
+  padding: 6px;
+  font-size: 1rem;
+  margin-top: 6px;
+}
