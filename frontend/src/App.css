@@ -67,11 +67,8 @@
 
 .filters input[type="text"],
 .filters select {
-  padding: 1.5rem 0.1rem;
-  border: 5px dotted red;
-  border-radius: 0;
-  font-size: 2rem;
-  background-color: yellow;
-  color: blue;
-  outline: 5px groove black;
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
 }
