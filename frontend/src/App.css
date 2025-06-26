@@ -25,31 +25,22 @@
 }
 
 .App-link {
-  color: red;
-  text-decoration: underline wavy green;
-  font-style: italic;
-  background-color: #000;
-  padding: 10px;
-  border-radius: 0;
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  0% {
-    transform: rotate(0deg) scale(1);
+  from {
+    transform: rotate(0deg);
   }
-  100% {
-    transform: rotate(720deg) scale(2);
+  to {
+    transform: rotate(360deg);
   }
 }
 
 .app-container {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  height: 500vh;
-  width: 120vw;
-  overflow: scroll;
-  position: absolute;
-  top: 50px;
-  left: 100px;
-  background: radial-gradient(circle, green, blue, red);
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
 }
