@@ -44,3 +44,8 @@
   overflow: hidden;
   position: relative;
 }
+
+.map-wrapper {
+  flex: 1;
+  position: relative;
+}
