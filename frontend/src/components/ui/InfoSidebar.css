@@ -99,3 +99,37 @@
   transform: scale(1.05);
   box-shadow: 0 6px 10px rgba(183, 28, 28, 0.5);
 }
+
+/* Container to position bookmark button below edit/delete */
+.info-sidebar .bookmark-button-container {
+  margin-top: 0.8rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Bookmark button styling (already declared, but update for spacing + hover) */
+.info-sidebar .bookmark-btn {
+  padding: 10px 15px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ffd54f, #ffca28);
+  color: #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 80%;
+}
+
+.info-sidebar .bookmark-btn:hover:enabled {
+  background: linear-gradient(135deg, #fbc02d, #fdd835);
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(251, 192, 45, 0.5);
+}
+
+.info-sidebar .bookmark-btn:disabled {
+  background: #e0e0e0;
+  color: #777;
+  cursor: default;
+}
