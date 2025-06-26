@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 import { ILocalItem, LocalItemType } from "../types/ILocalItem";
 import "./ui/AddItemModel.css";
 
+/**
+ * Props expected by AddItemModal:
+ * - onClose: function to close the modal
+ * - onSubmit: function to submit the new/edited item
+ * - initialData: optional data to pre-fill the form when editing
+ * - submitLabel: optional label for the submit button (e.g., "Edit")
+ */
 type Props = {
   onClose: () => void;
   onSubmit: (data: Partial<ILocalItem>) => void;
@@ -9,6 +16,7 @@ type Props = {
   submitLabel?: string;
 };
 
+// Default form structure used when creating a new item
 const defaultForm: Partial<ILocalItem> = {
   name: "",
   description: "",
@@ -24,20 +32,33 @@ const defaultForm: Partial<ILocalItem> = {
   mysteryScore: 0,
 };
 
+/**
+ * Modal form component to either add or edit a local item.
+ */
 const AddItemModal: React.FC<Props> = ({ onClose, onSubmit, initialData, submitLabel }) => {
+  // Internal state of the form initialized with defaults
   const [form, setForm] = useState<Partial<ILocalItem>>(defaultForm);
 
+  // On first render or when initialData changes, prefill the form
   useEffect(() => {
     if (initialData) {
       setForm({ ...defaultForm, ...initialData });
     }
   }, [initialData]);
 
+  /**
+   * Generic field updater for top-level fields in the form
+   */
   const handleChange = (field: keyof ILocalItem, value: any) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleNestedChange = <T extends keyof Pick<ILocalItem, "openingHours" | "featuredReview">>(
+  /**
+   * Nested field updater, e.g., for `openingHours.open` or `featuredReview.comment`
+   */
+  const handleNestedChange = <
+    T extends keyof Pick<ILocalItem, "openingHours" | "featuredReview">
+  >(
     field: T,
     key: keyof ILocalItem[T],
     value: any
@@ -51,6 +72,9 @@ const AddItemModal: React.FC<Props> = ({ onClose, onSubmit, initialData, submitL
     }));
   };
 
+  /**
+   * Validate and submit the form data
+   */
   const handleSubmit = () => {
     if (!form.name) return alert("Name is required");
     onSubmit(form);
@@ -61,6 +85,7 @@ const AddItemModal: React.FC<Props> = ({ onClose, onSubmit, initialData, submitL
       <div className="modal-content">
         <h3>{submitLabel === "Edit" ? "Edit Item" : "Add New Item"}</h3>
 
+        {/* Each field below corresponds to an ILocalItem property */}
         <label>
           Name *
           <input
@@ -98,11 +123,7 @@ const AddItemModal: React.FC<Props> = ({ onClose, onSubmit, initialData, submitL
             value={form.rating ?? ""}
             onChange={(e) => {
               const val = e.target.value;
-              if (val === "") {
-                handleChange("rating", undefined);
-              } else {
-                handleChange("rating", Number(val));
-              }
+              handleChange("rating", val === "" ? undefined : Number(val));
             }}
           />
         </label>
@@ -138,6 +159,7 @@ const AddItemModal: React.FC<Props> = ({ onClose, onSubmit, initialData, submitL
           />
         </label>
 
+        {/* Nested object: openingHours */}
         <label>
           Opening Time
           <input
@@ -156,6 +178,7 @@ const AddItemModal: React.FC<Props> = ({ onClose, onSubmit, initialData, submitL
           />
         </label>
 
+        {/* Nested object: featuredReview */}
         <label>
           Featured Review Author
           <input
@@ -184,11 +207,7 @@ const AddItemModal: React.FC<Props> = ({ onClose, onSubmit, initialData, submitL
             value={form.featuredReview?.stars ?? ""}
             onChange={(e) => {
               const val = e.target.value;
-              if (val === "") {
-                handleNestedChange("featuredReview", "stars", undefined);
-              } else {
-                handleNestedChange("featuredReview", "stars", Number(val));
-              }
+              handleNestedChange("featuredReview", "stars", val === "" ? undefined : Number(val));
             }}
           />
         </label>
@@ -203,11 +222,7 @@ const AddItemModal: React.FC<Props> = ({ onClose, onSubmit, initialData, submitL
             value={form.mysteryScore ?? ""}
             onChange={(e) => {
               const val = e.target.value;
-              if (val === "") {
-                handleChange("mysteryScore", undefined);
-              } else {
-                handleChange("mysteryScore", Number(val));
-              }
+              handleChange("mysteryScore", val === "" ? undefined : Number(val));
             }}
           />
         </label>
@@ -230,45 +245,12 @@ const AddItemModal: React.FC<Props> = ({ onClose, onSubmit, initialData, submitL
             value={form.type}
           >
             {[
-              "restaurant",
-              "cafe",
-              "bar",
-              "food_truck",
-              "bakery",
-              "park",
-              "lake",
-              "garden",
-              "beach",
-              "hiking_trail",
-              "museum",
-              "theater",
-              "landmark",
-              "art_gallery",
-              "historic_site",
-              "library",
-              "concert",
-              "festival",
-              "market",
-              "workshop",
-              "exhibition",
-              "event",
-              "bookstore",
-              "pharmacy",
-              "supermarket",
-              "mall",
-              "atm",
-              "bank",
-              "gas_station",
-              "laundry",
-              "bus_stop",
-              "train_station",
-              "metro_station",
-              "bike_station",
-              "parking",
-              "secret_spot",
-              "urban_legend",
-              "abandoned_place",
-              "street_art",
+              "restaurant", "cafe", "bar", "food_truck", "bakery", "park", "lake", "garden", "beach",
+              "hiking_trail", "museum", "theater", "landmark", "art_gallery", "historic_site", "library",
+              "concert", "festival", "market", "workshop", "exhibition", "event", "bookstore", "pharmacy",
+              "supermarket", "mall", "atm", "bank", "gas_station", "laundry", "bus_stop", "train_station",
+              "metro_station", "bike_station", "parking", "secret_spot", "urban_legend", "abandoned_place",
+              "street_art"
             ].map((type) => (
               <option key={type} value={type}>
                 {type}
@@ -277,6 +259,7 @@ const AddItemModal: React.FC<Props> = ({ onClose, onSubmit, initialData, submitL
           </select>
         </label>
 
+        {/* Action buttons */}
         <button onClick={handleSubmit}>{submitLabel || "Submit"}</button>
         <button onClick={onClose}>Cancel</button>
       </div>
