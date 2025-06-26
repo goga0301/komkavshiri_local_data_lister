@@ -1,3 +1,10 @@
+/* 
+  Styles the main container for the start screen.
+  - Takes full viewport height (100vh).
+  - Uses Flexbox to center content vertically and horizontally.
+  - Sets a radial gradient background from light to dark.
+  - Centers all inner text horizontally.
+*/
 .start-screen {
   height: 100vh;
   display: flex;
@@ -8,11 +15,25 @@
   text-align: center;
 }
 
+/* 
+  Styles the main heading inside the start screen.
+  - Increases font size for prominence.
+  - Adds space below the heading.
+*/
 .start-screen h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
 }
 
+/* 
+  Styles the button inside the start screen.
+  - Sets font size and generous padding for better touch/click targets.
+  - Rounds the corners.
+  - Applies dark background and white text for contrast.
+  - Removes default border.
+  - Adds pointer cursor to indicate interactivity.
+  - Adds a smooth transition for hover effects.
+*/
 .start-screen button {
   font-size: 1.25rem;
   padding: 0.75rem 1.5rem;
@@ -24,6 +45,10 @@
   transition: 0.3s;
 }
 
+/* 
+  Hover state for the start screen button.
+  - Changes background color to red to highlight interactivity.
+*/
 .start-screen button:hover {
   background-color: #ef233c;
 }
