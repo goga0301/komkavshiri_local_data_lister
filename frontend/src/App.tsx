@@ -19,6 +19,13 @@ function App() {
   const [minRating, setMinRating] = useState(0);
   const [onlyTrending, setOnlyTrending] = useState(false);
   const [onlyEvents, setOnlyEvents] = useState(false);
+<<<<<<< Papuna-Mamageishvili
+  const [onlyBookmarks, setOnlyBookmarks] = useState(false);
+  const handleBookmarksToggle = () => {
+    setOnlyBookmarks((prev) => !prev);
+  };
+=======
+>>>>>>> main
   const [addingItem, setAddingItem] = useState(false);
   const [editingItem, setEditingItem] = useState<ILocalItem | null>(null);
   const [pendingCoords, setPendingCoords] = useState<{ lat: number; lng: number } | null>(null);
@@ -32,15 +39,26 @@ function App() {
   }, []);
 
   const filteredItems = useMemo(() => {
+<<<<<<< Papuna-Mamageishvili
+    const bookmarkedIds = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+=======
+>>>>>>> main
     return items.filter((item) => {
       const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesTag = selectedTag === "" || item.tags.includes(selectedTag);
       const matchesRating = item.rating >= minRating;
       const matchesTrending = !onlyTrending || item.isTrending;
       const matchesEvent = !onlyEvents || item.type === "event";
+<<<<<<< Papuna-Mamageishvili
+      const matchesBookmarks = !onlyBookmarks || bookmarkedIds.includes(item.id);
+      return matchesSearch && matchesTag && matchesRating && matchesTrending && matchesEvent && matchesBookmarks;
+    });
+  }, [items, searchQuery, selectedTag, minRating, onlyTrending, onlyEvents, onlyBookmarks]);
+=======
       return matchesSearch && matchesTag && matchesRating && matchesTrending && matchesEvent;
     });
   }, [items, searchQuery, selectedTag, minRating, onlyTrending, onlyEvents]);
+>>>>>>> main
 
   const allTags = useMemo(() => {
     const tagSet = new Set<string>();
@@ -108,8 +126,17 @@ function App() {
           onTrendingToggle={() => setOnlyTrending((prev) => !prev)}
           allTags={allTags}
           onlyEvents={onlyEvents}
+<<<<<<< Papuna-Mamageishvili
+          onlyBookmarks={onlyBookmarks} // ✅
+          onBookmarksToggle={handleBookmarksToggle} // ✅
+
           onEventsToggle={() => setOnlyEvents((prev) => !prev)}
           onClose={() => setFiltersVisible(false)}  // Pass close handler
+
+=======
+          onEventsToggle={() => setOnlyEvents((prev) => !prev)}
+          onClose={() => setFiltersVisible(false)}  // Pass close handler
+>>>>>>> main
         />
       )}
 

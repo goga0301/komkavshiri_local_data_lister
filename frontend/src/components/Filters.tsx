@@ -9,10 +9,19 @@ type FiltersProps = {
   onRatingChange: (rating: number) => void;
   onlyTrending: boolean;
   onTrendingToggle: () => void;
+<<<<<<< Papuna-Mamageishvili
+  onlyEvents: boolean;
+  onEventsToggle: () => void;
+  onlyBookmarks: boolean; 
+  onBookmarksToggle: () => void; 
+  allTags: string[];
+  onClose: () => void;
+=======
   allTags: string[];
   onEventsToggle: () => void;
   onlyEvents: boolean;
   onClose: () => void;  
+>>>>>>> main
 };
 
 const Filters: React.FC<FiltersProps> = ({
@@ -24,9 +33,17 @@ const Filters: React.FC<FiltersProps> = ({
   onRatingChange,
   onlyTrending,
   onTrendingToggle,
+<<<<<<< Papuna-Mamageishvili
+  onlyEvents,
+  onEventsToggle,
+  onlyBookmarks,        
+  onBookmarksToggle,     
+  allTags,
+=======
   allTags,
   onEventsToggle,
   onlyEvents,
+>>>>>>> main
   onClose,
 }) => {
   return (
@@ -73,9 +90,25 @@ const Filters: React.FC<FiltersProps> = ({
         />
         🔥 Trending only
       </label>
+<<<<<<< Papuna-Mamageishvili
+
+      {/* ✅ Bookmarks filter */}
+      <label>
+        <input
+          type="checkbox"
+          checked={onlyBookmarks}
+          onChange={onBookmarksToggle}
+        />
+        📌 Bookmarked only
+      </label>
+=======
+>>>>>>> main
     </div>
   );
 };
 
 export default Filters;
+<<<<<<< Papuna-Mamageishvili
+=======
 
+>>>>>>> main
