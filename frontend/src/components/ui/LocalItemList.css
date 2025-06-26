@@ -1,14 +1,30 @@
+/* 
+  Styles the container that holds local items.
+  - Adds padding for internal spacing.
+  - Enables vertical scrolling if content overflows.
+  - Ensures it takes full height of its parent container.
+*/
 .localitem-list {
   padding: 12px;
   overflow-y: auto;
   height: 100%;
 }
 
+/* 
+  Base style for status messages.
+  - Adds padding for spacing around text.
+  - Uses bold font weight to emphasize the message.
+*/
 .status-msg {
   padding: 12px;
   font-weight: bold;
 }
 
+/* 
+  Modifier class for error messages.
+  - Changes the text color to red to indicate an error.
+  - Must be used in combination with `.status-msg`.
+*/
 .status-msg.error {
   color: red;
 }
