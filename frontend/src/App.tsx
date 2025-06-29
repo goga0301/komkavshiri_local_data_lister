@@ -3,14 +3,16 @@ import MapView from "./components/MapView";
 import InfoSidebar from "./components/InfoSidebar";
 import StartScreen from "./components/StartScreen";
 import Filters from "./components/Filters";
-import { ILocalItem, LocalItemType } from "./types/ILocalItem";
+import { ILocalItem } from "./types/ILocalItem";
 import { fetchLocalItems } from "./services/api";
 import "./App.css";
 import axios from "axios";
 import AddItemModal from "./components/AddItemModel";
 import { v4 as uuidv4 } from "uuid";
+import AuthPanel from "./components/AuthPanel";
 
 function App() {
+  const [user, setUser] = useState<{ username: string; token: string } | null>(null);
   const [items, setItems] = useState<ILocalItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<ILocalItem | null>(null);
   const [started, setStarted] = useState(false);
@@ -19,46 +21,31 @@ function App() {
   const [minRating, setMinRating] = useState(0);
   const [onlyTrending, setOnlyTrending] = useState(false);
   const [onlyEvents, setOnlyEvents] = useState(false);
-<<<<<<< Papuna-Mamageishvili
   const [onlyBookmarks, setOnlyBookmarks] = useState(false);
-  const handleBookmarksToggle = () => {
-    setOnlyBookmarks((prev) => !prev);
-  };
-=======
->>>>>>> main
   const [addingItem, setAddingItem] = useState(false);
   const [editingItem, setEditingItem] = useState<ILocalItem | null>(null);
   const [pendingCoords, setPendingCoords] = useState<{ lat: number; lng: number } | null>(null);
   const [sessionItemIds, setSessionItemIds] = useState<Set<string>>(new Set());
-
-  // NEW: State to toggle filter panel visibility
   const [filtersVisible, setFiltersVisible] = useState(false);
 
   useEffect(() => {
-    fetchLocalItems().then(setItems);
-  }, []);
+    if (user) {
+      fetchLocalItems().then(setItems);
+    }
+  }, [user]);
 
   const filteredItems = useMemo(() => {
-<<<<<<< Papuna-Mamageishvili
     const bookmarkedIds = JSON.parse(localStorage.getItem("bookmarks") || "[]");
-=======
->>>>>>> main
     return items.filter((item) => {
       const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesTag = selectedTag === "" || item.tags.includes(selectedTag);
       const matchesRating = item.rating >= minRating;
       const matchesTrending = !onlyTrending || item.isTrending;
       const matchesEvent = !onlyEvents || item.type === "event";
-<<<<<<< Papuna-Mamageishvili
       const matchesBookmarks = !onlyBookmarks || bookmarkedIds.includes(item.id);
       return matchesSearch && matchesTag && matchesRating && matchesTrending && matchesEvent && matchesBookmarks;
     });
   }, [items, searchQuery, selectedTag, minRating, onlyTrending, onlyEvents, onlyBookmarks]);
-=======
-      return matchesSearch && matchesTag && matchesRating && matchesTrending && matchesEvent;
-    });
-  }, [items, searchQuery, selectedTag, minRating, onlyTrending, onlyEvents]);
->>>>>>> main
 
   const allTags = useMemo(() => {
     const tagSet = new Set<string>();
@@ -98,13 +85,16 @@ function App() {
       });
   };
 
+  if (!user) {
+    return <AuthPanel onLoginSuccess={setUser} />;
+  }
+
   if (!started) {
     return <StartScreen onStart={() => setStarted(true)} />;
   }
 
   return (
     <div className="app-container">
-      {/* Toggle Filters Button */}
       <button
         className="filters-toggle-btn"
         onClick={() => setFiltersVisible((v) => !v)}
@@ -113,7 +103,6 @@ function App() {
         {filtersVisible ? "Hide Filters ✖️" : "Show Filters 🔍"}
       </button>
 
-      {/* Show Filters panel only if visible */}
       {filtersVisible && (
         <Filters
           searchQuery={searchQuery}
@@ -126,17 +115,10 @@ function App() {
           onTrendingToggle={() => setOnlyTrending((prev) => !prev)}
           allTags={allTags}
           onlyEvents={onlyEvents}
-<<<<<<< Papuna-Mamageishvili
-          onlyBookmarks={onlyBookmarks} // ✅
-          onBookmarksToggle={handleBookmarksToggle} // ✅
-
           onEventsToggle={() => setOnlyEvents((prev) => !prev)}
-          onClose={() => setFiltersVisible(false)}  // Pass close handler
-
-=======
-          onEventsToggle={() => setOnlyEvents((prev) => !prev)}
-          onClose={() => setFiltersVisible(false)}  // Pass close handler
->>>>>>> main
+          onlyBookmarks={onlyBookmarks}
+          onBookmarksToggle={() => setOnlyBookmarks((prev) => !prev)}
+          onClose={() => setFiltersVisible(false)}
         />
       )}
 
@@ -146,6 +128,7 @@ function App() {
         onEdit={setEditingItem}
         sessionItemIds={sessionItemIds}
       />
+
       <div className="map-wrapper">
         <MapView
           items={filteredItems}
@@ -198,6 +181,7 @@ function App() {
           }}
         />
       )}
+
       {editingItem && (
         <AddItemModal
           onClose={() => setEditingItem(null)}
