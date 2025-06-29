@@ -41,4 +41,41 @@ function AuthPanel({ onLoginSuccess }: { onLoginSuccess: (user: { username: stri
     }
   };
 
+  return (
+    <div className="auth-wrapper">
+      <div className="auth-box">
+        <h1>Local Data Lister Login</h1>
+        <form onSubmit={handleLogin}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <label className="remember">
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={() => setRememberMe((prev) => !prev)}
+            />
+            Remember me
+          </label>
+          <button type="submit" disabled={loading}>{loading ? "Logging in..." : "Login"}</button>
+          {error && <div className="auth-error">{error}</div>}
+        </form>
+        <div className="auth-meta">
+          <h4>Session Log</h4>
+          <ul>{history.map((entry, i) => <li key={i}>{entry}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  );
 }
+
+export default AuthPanel;
